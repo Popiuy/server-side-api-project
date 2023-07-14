@@ -6,6 +6,8 @@ fetch(url)
     console.log(response);
     response = response.json();
     console.log(response);
-}
+})
 
-)
+$( document ).ready(function (){
+    $(".dropdown-trigger").dropdown();
+})
