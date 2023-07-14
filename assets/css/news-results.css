@@ -2,6 +2,15 @@
     width: 100%;
 }
 
-.btn-large{
+.nav-btn{
     height: 100%;
+}
+
+#searchBar{
+    margin-top: 0%;
+    box-shadow: none;
+}
+
+#navBar{
+    margin-bottom: 0%;
 }
