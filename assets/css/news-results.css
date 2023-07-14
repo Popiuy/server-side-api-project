@@ -1,3 +1,4 @@
+/* materialize has width of 70%, set to 100% to fill page */
 .container{
     width: 100%;
 }
@@ -6,14 +7,11 @@
     height: 100%;
 }
 
+/* removed shadow to seamlessly link two elements */
 #searchBar{
-    margin-top: 0%;
     box-shadow: none;
 }
 
-#navBar{
-    margin-bottom: 0%;
-}
 
 .btn-submit{
     border-radius: 15px;

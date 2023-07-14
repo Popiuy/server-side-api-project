@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importing materialize, google fonts, font awesome and jquery-->
     <script src="https://kit.fontawesome.com/c3d9b0aee9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script
 			  src="https://code.jquery.com/jquery-3.7.0.js"
@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!--navbar for our buttons and timers-->
     <nav class="row" id="navBar">
       <div class="nav-wrapper col s12">
         <button class="left col s3 nav-btn">Cats</button>
@@ -23,8 +24,8 @@
         <div class="brand-logo center"><i class="fa-solid fa-dumpster-fire fa-beat"></i></div>
         <button class="btn right col s3 nav-btn disabled">News</button>
         <h5 class='right col s2 right-align'>TIMER FOR NEWS</h5>
-
       </div>
+      <!--search bar for the content and a submit button-->
       <nav id="searchBar" class="col s12"> 
         <div class="nav-wrapper">
           <form>
@@ -38,12 +39,13 @@
         </div>
       </nav>  
     </nav> 
-
+    <!--This is where content will be displayed-->
   <main class="row">
       <div id="resultsDisplay" class="center">
         <h1>Text for testing</h1>
       </div>
   </main>
+    <!-- This is where you can switch between pages of content -->
 <footer class='container center'>
   <ul class="pagination">
       <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -55,11 +57,8 @@
       <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
 </footer>
-    <!-- <header class="row">
-      <button class ='col s6'>Cats</button>
-      <button class ='col s6'>News</button>
-    </header> -->
 
+    <!-- Links to materialize and javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../js/news-script.js"></script>
 </body>
