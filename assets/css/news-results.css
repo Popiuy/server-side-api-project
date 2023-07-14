@@ -1,0 +1,22 @@
+.container{
+    width: 100%;
+}
+
+.nav-btn{
+    height: 100%;
+}
+
+#searchBar{
+    margin-top: 0%;
+    box-shadow: none;
+}
+
+#navBar{
+    margin-bottom: 0%;
+}
+
+.btn-submit{
+    border-radius: 15px;
+    background-color: aqua;
+    height: 100%;
+}
