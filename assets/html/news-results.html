@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c3d9b0aee9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,36 +20,27 @@
       <div class="nav-wrapper col s12">
         <button class="left col s3 nav-btn">Cats</button>
         <h5 class="left col s2">TIMER FOR CATS</h5>
-        <a href="#!" class="brand-logo center">Logo</a>
-        <button class="right col s3 nav-btn">News</button>
-        <h5 class='right col s2 '>TIMER FOR NEWS</h5>
+        <div class="brand-logo center"><i class="fa-solid fa-dumpster-fire fa-beat"></i></div>
+        <button class="btn right col s3 nav-btn disabled">News</button>
+        <h5 class='right col s2 right-align'>TIMER FOR NEWS</h5>
 
       </div>
       <nav id="searchBar" class="col s12"> 
         <div class="nav-wrapper">
           <form>
-            <div class="input-field">
+            <div class="input-field col s11">
               <input id="search" type="search" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
               <i class="material-icons">close</i>
             </div>
+            <button type="submit" class="col s1 btn-submit">Submit</button>
           </form>
         </div>
       </nav>  
     </nav> 
 
   <main class="row">
-    
-      <div class="col s2">
-        <form>
-          <div class="input-field">
-            <input type="text" id="searchInput">
-            <label for="searchInput">Enter a Search Term Here</label>
-          </div>
-          <a class="waves-effect waves-light btn" type="submit">button</a>
-        </form>
-      </div>
-      <div class="col s10">
+      <div id="resultsDisplay" class="center">
         <h1>Text for testing</h1>
       </div>
   </main>

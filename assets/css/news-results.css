@@ -14,3 +14,9 @@
 #navBar{
     margin-bottom: 0%;
 }
+
+.btn-submit{
+    border-radius: 15px;
+    background-color: aqua;
+    height: 100%;
+}
