@@ -18,3 +18,10 @@
     background-color: aqua;
     height: 100%;
 }
+
+.newEntry{
+    background-color: black;
+    border-radius: 15px;
+    color:white;
+    font-size: 30px;
+}

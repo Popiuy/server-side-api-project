@@ -14,7 +14,8 @@ fetch(url)
     //create new a item, make the content the abstract, and add an href
     for(var i = 0; i < data.response.docs.length; i++){
         var newEntry = $('<div></div>');
-        // newEntry.attr('href', data.response.docs[i]['web_url']);
+        newEntry.attr('href', data.response.docs[i]['web_url']);
+        newEntry.addClass('newEntry');
         newEntry.text(data.response.docs[i]['abstract']);
         resultsDisplay.append(newEntry);
     }
