@@ -1,28 +1,39 @@
 
 //section for api management 
-var resultsDisplay = $('#resultsDisplay')
-console.log(resultsDisplay)
-var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=obama+ukraine&api-key=Eulq1k1mu9GVwfHXAOmphojyaTQWGIGu'
+var resultsDisplay = $('#resultsDisplay');
+var cardTemplate = $('#entryCard');
 
-fetch(url)
-
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    console.log(data.response);
-    //create new a item, make the content the abstract, and add an href
-    for(var i = 0; i < data.response.docs.length; i++){
-        var newEntry = $('#entryCard').clone();
-        newEntry.find('p').text(data.response.docs[i]['abstract'])
-        newEntry.find('a').attr('href', data.response.docs[i]['web_url']);
+var createEntries = function(apiData){
+    for(var i = 0; i < apiData.response.docs.length; i++){
+        var newEntry = cardTemplate.clone();
+        newEntry.find('p').text(apiData.response.docs[i]['abstract'])
+        newEntry.find('a').attr('href', apiData.response.docs[i]['web_url']);
         newEntry.attr('style','');
-        // newEntry.attr('href', data.response.docs[i]['web_url']);
-        // newEntry.addClass('newEntry');
-        // newEntry.text(data.response.docs[i]['abstract']);
         resultsDisplay.append(newEntry);
     }
-})
+}
+
+var searchDisplay = function(searchInput){
+
+    var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + searchInput + '&api-key=Eulq1k1mu9GVwfHXAOmphojyaTQWGIGu'
+
+    fetch(url)
+
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data.response);
+        //create new a item, make the content the abstract, and add an href
+        createEntries(data);
+    })
+
+
+}
+
+
+
+
 
 //section for timer - on page load, timer starts counting for the page you're on, timer for other page 
 // is displayed but not counting. Count up every second.
