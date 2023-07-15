@@ -13,10 +13,13 @@ fetch(url)
     console.log(data.response);
     //create new a item, make the content the abstract, and add an href
     for(var i = 0; i < data.response.docs.length; i++){
-        var newEntry = $('<div></div>');
-        newEntry.attr('href', data.response.docs[i]['web_url']);
-        newEntry.addClass('newEntry');
-        newEntry.text(data.response.docs[i]['abstract']);
+        var newEntry = $('#entryCard').clone();
+        newEntry.find('p').text(data.response.docs[i]['abstract'])
+        newEntry.find('a').attr('href', data.response.docs[i]['web_url']);
+        newEntry.attr('style','');
+        // newEntry.attr('href', data.response.docs[i]['web_url']);
+        // newEntry.addClass('newEntry');
+        // newEntry.text(data.response.docs[i]['abstract']);
         resultsDisplay.append(newEntry);
     }
 })

@@ -20,8 +20,7 @@
 }
 
 .newEntry{
-    background-color: black;
+    box-shadow: 3px;
     border-radius: 15px;
-    color:white;
     font-size: 30px;
 }
