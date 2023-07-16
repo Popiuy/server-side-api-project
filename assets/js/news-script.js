@@ -5,6 +5,7 @@ var cardTemplate = $('#entryCard');
 var searchField = $('#searchInputField');
 var searchTerm = '';
 var pageCounter = 0;
+var pageURL = window.location.href;
 
 // Creating new cards for articles and adding to page
 var createEntries = function(apiData){
@@ -45,9 +46,16 @@ searchField.submit(function(event){
     //clear previous search results
     resultsDisplay.html('');
     pageCounter = 0;
+    $('#pageCount').text('Page ' + (pageCounter + 1));
+
+
+    //perform new search
     searchTerm = $('#search').val();
     $('#search').val('');
     searchDisplay(searchTerm);
+
+    //store search info in url
+    window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
     //display pagination html
     $('.pagination').attr('style','');
 })
@@ -67,6 +75,8 @@ $('#back').on('click', function(){
     $('#search').val('');
     searchDisplay(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
+    //store search info in url
+    window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
 })
 
 
@@ -78,6 +88,8 @@ $('#forward').on('click', function(){
     console.log(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
     $('#back').removeClass('disabled');
+    //store search info in url
+    window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
 })
 
 //section for timer - on page load, timer starts counting for the page you're on, timer for other page 
