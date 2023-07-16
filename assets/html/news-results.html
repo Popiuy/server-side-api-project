@@ -28,7 +28,7 @@
       <!--search bar for the content and a submit button-->
       <nav id="searchBar" class="col s12"> 
         <div class="nav-wrapper">
-          <form>
+          <form id="searchInputField">
             <div class="input-field col s11">
               <input id="search" type="search" required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -41,9 +41,8 @@
     </nav> 
     <!--This is where content will be displayed-->
   <main class="row">
-      <div id="resultsDisplay" class="center">
-        <h1>Text for testing</h1>
-      </div>
+      <ul id="resultsDisplay" class="center">
+      </ul>
   </main>
     <!-- This is where you can switch between pages of content -->
 <footer class='container center'>
@@ -57,9 +56,22 @@
       <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
 </footer>
-
+<div class="row" id="entryCard" style="display:none">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <h3></h3>
+        <p></p>
+      </div>
+      <div class="card-action">
+        <a href="#">Read More Here</a>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Links to materialize and javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../js/news-script.js"></script>
 </body>
+
 </html>
