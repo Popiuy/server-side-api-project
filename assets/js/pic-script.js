@@ -6,6 +6,7 @@ var form = document.querySelector("#form");
 var resultsDisplay = document.querySelector("#resultsDisplay");
 var pictureUrl = "";
 var searchField = $('#searchInputField');
+var pageCounter = 0;
 
 function pullPicture(url) {
   fetch(url)
@@ -26,7 +27,6 @@ function printPicture(url) {
 }
 
 function renderCatData(data) {
-  console.log(data);
   var catList = data.data;
   for (var i = 0; i < catList.length; i++) {
     var currentCatData = catList[i];
