@@ -3,25 +3,25 @@ var picsUrl = 'https://api.artic.edu/api/v1/artworks/search?q=cats&query[term][i
 
 var input = document.querySelector("#input");
 var form = document.querySelector("#form");
-var resultsDisplay = document.querySelector("#resultsDisplay"); 
+var resultsDisplay = document.querySelector("#resultsDisplay");
 var pictureUrl = "";
 
 function pullPicture(url) {
   fetch(url)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(picInfo) {
-  pictureUrl =  "https://www.artic.edu/iiif/2/" + picInfo.data.image_id + "/full/843,/0/default.jpg"; 
-  printPicture(pictureUrl);
-  console.log(pictureUrl);
-  });
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function (picInfo) {
+      pictureUrl = "https://www.artic.edu/iiif/2/" + picInfo.data.image_id + "/full/843,/0/default.jpg";
+      printPicture(pictureUrl);
+      console.log(pictureUrl);
+    });
 }
 
 function printPicture(url) {
-var newPicture = document.createElement("img");
-newPicture.setAttribute("src", url);
-resultsDisplay.append(newPicture);
+  var newPicture = document.createElement("img");
+  newPicture.setAttribute("src", url);
+  resultsDisplay.append(newPicture);
 }
 
 function renderCatData(data) {
@@ -37,24 +37,24 @@ function renderCatData(data) {
 
 // fetch call to return information from the API
 fetch(picsUrl)
-  .then(function(response) {
+  .then(function (response) {
     return response.json();
   })
-  .then(function(picInfo) {
+  .then(function (picInfo) {
     console.log(picInfo);
     renderCatData(picInfo);
-    for (i=0; i < 10; i++) {
-    pullPicture(picInfo.data[i].api_link);
-  }
+    for (var i = 0; i < picInfo.data.length; i++) {
+      pullPicture(picInfo.data[i].api_link);
+    }
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log("Error:", error);
   });
 
 // event listener to check what the user is interested in
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault();
-  var searchInput = input.value.trim(); 
+  var searchInput = input.value.trim();
   if (searchInput !== "") {
     fetchData(searchInput);
   } else {
@@ -66,13 +66,13 @@ form.addEventListener("submit", function(event) {
 function fetchData(searchInput) {
   var searchUrl = 'https://api.artic.edu/api/v1/artworks/search?q=' + searchInput + '&query[term][is_public_domain]=true';
   fetch(searchUrl)
-    .then(function(response) {
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data) {
+    .then(function (data) {
       renderCatData(data);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log("Error:", error);
     });
 }
