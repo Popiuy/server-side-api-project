@@ -48,16 +48,22 @@ searchField.submit(function(event){
     searchTerm = $('#search').val();
     $('#search').val('');
     searchDisplay(searchTerm);
-    console.log(searchTerm);
+    //display pagination html
+    $('.pagination').attr('style','');
 })
 
 //listener for pagination
 $('#back').on('click', function(){
-    pageCounter++;
+    if (pageCounter === 0){
+        return;
+    }
+    else if (pageCounter === 1){
+        $('#back').addClass('disabled');
+    }
+    pageCounter--;
     resultsDisplay.html('');
     $('#search').val('');
     searchDisplay(searchTerm);
-    console.log(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
 })
 
@@ -68,6 +74,7 @@ $('#forward').on('click', function(){
     searchDisplay(searchTerm);
     console.log(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
+    $('#back').removeClass('disabled');
 })
 
 //section for timer - on page load, timer starts counting for the page you're on, timer for other page 
