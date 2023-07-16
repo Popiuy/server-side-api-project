@@ -13,6 +13,11 @@ var hours = 0;
 var minutes = 0;
 var seconds = 0;
 
+
+function newsTimer() {
+    setInterval()
+}
+
 // event listener when news button is clicked on, news timer starts
 newsBtn.addEventListener('click', () => {
     if (paused){
