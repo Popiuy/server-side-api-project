@@ -44,7 +44,6 @@ fetch(picsUrl)
     renderCatData(picInfo);
     for (var i = 0; i < picInfo.data.length; i++) {
       pullPicture(picInfo.data[i].api_link);
-     // pullPicture(picInfo.data[i].title);
     }
   })
   .catch(function (error) {
@@ -52,24 +51,11 @@ fetch(picsUrl)
   });
 
 // event listener to check what the user is interested in
-searchField.submit(function(event) {
+$('#form').submit(function(event) {
   event.preventDefault();
- //clear previous search results
- resultsDisplay.html('');
- pageCounter = 0;
- $('#pageCount').text('Page ' + (pageCounter + 1));
-
- //perform new search
- searchTerm = $('#search').val();
- $('#search').val('');
- searchDisplay(searchTerm);
-
-  var searchInput = input.value.trim();
-  if (searchInput !== '') {
-    fetchData(searchInput);
-  } else {
-    alert("Please enter types of cats you'd like to see");
-  }
+  var searchTerm = $('#input').val();
+  $('#input').val('');
+  fetchData(searchTerm);
 });
 
 // function to handle the information we returned and append api_link to the page
