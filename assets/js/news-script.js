@@ -4,8 +4,9 @@ var resultsDisplay = $('#resultsDisplay');
 var cardTemplate = $('#entryCard');
 var searchField = $('#searchInputField');
 var searchTerm = '';
+var pageCounter = 0;
 
-// Creating new cards for articles and 
+// Creating new cards for articles and adding to page
 var createEntries = function(apiData){
     for(var i = 0; i < apiData.response.docs.length; i++){
         //clones card element from html
@@ -23,7 +24,7 @@ var createEntries = function(apiData){
 //Function for grabbing search terms and printing the results to screen
 var searchDisplay = function(searchInput){
 
-    var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + searchInput + '&api-key=Eulq1k1mu9GVwfHXAOmphojyaTQWGIGu'
+    var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + searchInput + '&page=' + pageCounter + '&api-key=Eulq1k1mu9GVwfHXAOmphojyaTQWGIGu' 
 
     fetch(url)
 
@@ -43,16 +44,43 @@ searchField.submit(function(event){
     event.preventDefault();
     //clear previous search results
     resultsDisplay.html('');
+
     searchTerm = $('#search').val();
     $('#search').val('');
     searchDisplay(searchTerm);
+    console.log(searchTerm);
 })
 
+//listener for pagination
+$('#back').on('click', function(){
+    pageCounter++;
+    resultsDisplay.html('');
+    $('#search').val('');
+    searchDisplay(searchTerm);
+    console.log(searchTerm);
+    $('#pageCount').text('Page ' + (pageCounter + 1));
+})
 
+$('#forward').on('click', function(){
+    pageCounter++;
+    resultsDisplay.html('');
+    $('#search').val('');
+    searchDisplay(searchTerm);
+    console.log(searchTerm);
+    $('#pageCount').text('Page ' + (pageCounter + 1));
+})
 
 //section for timer - on page load, timer starts counting for the page you're on, timer for other page 
 // is displayed but not counting. Count up every second.
 // on page transition, timers are stored in localStorage
+
+//on page load, update timer text from localStorage
+
+//setInterval runs on page load
+// every 1 sec:
+// increases timer by 1
+// updates text field on page
+// stores current time in localStorage
 
 //section for pagination
 
