@@ -5,6 +5,7 @@ var input = document.querySelector("#input");
 var form = document.querySelector("#form");
 var resultsDisplay = document.querySelector("#resultsDisplay");
 var pictureUrl = "";
+var searchField = $('#searchInputField');
 
 function pullPicture(url) {
   fetch(url)
@@ -30,8 +31,6 @@ function renderCatData(data) {
   for (var i = 0; i < catList.length; i++) {
     var currentCatData = catList[i];
     var catDataEl = document.createElement("div");
-    catDataEl.textContent = currentCatData.api_link;
-    resultsDisplay.append(catDataEl);
   }
 }
 
@@ -45,6 +44,7 @@ fetch(picsUrl)
     renderCatData(picInfo);
     for (var i = 0; i < picInfo.data.length; i++) {
       pullPicture(picInfo.data[i].api_link);
+     // pullPicture(picInfo.data[i].title);
     }
   })
   .catch(function (error) {
@@ -52,10 +52,20 @@ fetch(picsUrl)
   });
 
 // event listener to check what the user is interested in
-form.addEventListener("submit", function (event) {
+searchField.submit(function(event) {
   event.preventDefault();
+ //clear previous search results
+ resultsDisplay.html('');
+ pageCounter = 0;
+ $('#pageCount').text('Page ' + (pageCounter + 1));
+
+ //perform new search
+ searchTerm = $('#search').val();
+ $('#search').val('');
+ searchDisplay(searchTerm);
+
   var searchInput = input.value.trim();
-  if (searchInput !== "") {
+  if (searchInput !== '') {
     fetchData(searchInput);
   } else {
     alert("Please enter types of cats you'd like to see");
