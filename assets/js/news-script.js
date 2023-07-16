@@ -2,6 +2,8 @@
 //section for api management 
 var resultsDisplay = $('#resultsDisplay');
 var cardTemplate = $('#entryCard');
+var searchField = $('#searchInputField');
+var searchTerm = '';
 
 var createEntries = function(apiData){
     for(var i = 0; i < apiData.response.docs.length; i++){
@@ -31,7 +33,12 @@ var searchDisplay = function(searchInput){
 
 }
 
-
+searchField.submit(function(event){
+    event.preventDefault();
+    searchTerm = $('#search').val();
+    $('#search').val('');
+    searchDisplay(searchTerm);
+})
 
 
 
