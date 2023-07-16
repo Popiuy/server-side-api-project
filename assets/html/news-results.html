@@ -19,7 +19,7 @@
     <!--navbar for our buttons and timers-->
     <nav class="row" id="navBar">
       <div class="nav-wrapper col s12">
-        <button class="left col s3 nav-btn">Cats</button>
+        <button class="left col s3 nav-btn" id='catLink'>Cats</button>
         <h5 class="left col s2">TIMER FOR CATS</h5>
         <div class="brand-logo center"><i class="fa-solid fa-dumpster-fire fa-beat"></i></div>
         <button class="btn right col s3 nav-btn disabled">News</button>
@@ -46,14 +46,10 @@
   </main>
     <!-- This is where you can switch between pages of content -->
 <footer class='container center'>
-  <ul class="pagination">
-      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-      <li class="active"><a href="#!">1</a></li>
-      <li class="waves-effect"><a href="#!">2</a></li>
-      <li class="waves-effect"><a href="#!">3</a></li>
-      <li class="waves-effect"><a href="#!">4</a></li>
-      <li class="waves-effect"><a href="#!">5</a></li>
-      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  <ul class="pagination" style="display: none">
+      <li class="disabled btn" id="back"><i class="material-icons">chevron_left</i></a></li>
+      <li id="pageCount">Page 1</li>
+      <li class="waves-effect btn" id="forward"><i class="material-icons">chevron_right</i></a></li>
   </ul>
 </footer>
 <div class="row" id="entryCard" style="display:none">
