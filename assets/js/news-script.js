@@ -44,7 +44,7 @@ searchField.submit(function(event){
     event.preventDefault();
     //clear previous search results
     resultsDisplay.html('');
-
+    pageCounter = 0;
     searchTerm = $('#search').val();
     $('#search').val('');
     searchDisplay(searchTerm);
@@ -54,9 +54,11 @@ searchField.submit(function(event){
 
 //listener for pagination
 $('#back').on('click', function(){
+    //stopping the back button from working when on page 1
     if (pageCounter === 0){
         return;
     }
+    //making the back button visibly unusable when on page 1
     else if (pageCounter === 1){
         $('#back').addClass('disabled');
     }
@@ -66,6 +68,7 @@ $('#back').on('click', function(){
     searchDisplay(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
 })
+
 
 $('#forward').on('click', function(){
     pageCounter++;
