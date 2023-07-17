@@ -79,4 +79,18 @@ function fetchData(searchInput) {
 var timeDisplay = document.querySelector('#time-display');
 var counter = 0;
 
+//want this to happen first
+counter = store.get('picsTime')
+
+
+
+//setInterval runs on page load
+setInterval(function(){
+    timeDisplay.textContent = counter;
+    counter ++;
+    store.set('picsTime', counter)
+    console.log(store.get('picsTime')) 
+
+}, 1000); 
+
 // section handling page transition
