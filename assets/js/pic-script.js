@@ -85,12 +85,16 @@ counter = store.get('picsTime')
 
 
 //setInterval runs on page load
-setInterval(function(){
+timer = setInterval(function(){
     timeDisplay.textContent = counter;
     counter ++;
-    store.set('picsTime', counter)
-    console.log(store.get('picsTime')) 
-
 }, 1000); 
+
+$('#news-btn').on('click', function(){
+  clearInterval(timer);
+  store.set('picsTime', counter);
+  window.location = '/news-results.html';
+
+})
 
 // section handling page transition
