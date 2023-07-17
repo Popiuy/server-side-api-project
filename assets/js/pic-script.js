@@ -72,29 +72,29 @@ function fetchData(searchInput) {
       console.log("Error:", error);
     });
 }
-//section for pagination
 
-// section for timers
-//on page load, update timer text from localStorage
-var timeDisplay = document.querySelector('#time-display');
+// section handling page transition
+
+//Timer Section
+
+var timeDisplay = document.querySelector('#catTimer');
 var counter = 0;
 
-//want this to happen first
-counter = store.get('picsTime')
+//on page load, update timer text from localStorage
+counter = store.get('catTime');
 
+// Update frozen timer from localStorage
+$('#newsTimer').text(store.get('newsTime'));
 
-
-//setInterval runs on page load
+//Update news timer every second
 timer = setInterval(function(){
     timeDisplay.textContent = counter;
     counter ++;
 }, 1000); 
 
+//Allows button to stop timer, store timer info for current page, and swap to cats page
 $('#news-btn').on('click', function(){
-  clearInterval(timer);
-  store.set('picsTime', counter);
-  window.location = '/news-results.html';
-
+    clearInterval(timer);
+    store.set('catTime', counter);
+    window.location = './pics-results.html';
 })
-
-// section handling page transition
