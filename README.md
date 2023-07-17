@@ -1,4 +1,13 @@
-# server-side-api-project
+# Ignorance is Bliss: A Site to Quantify the Effect of Content Consumption on Mental Health
+
+## Description
+
+## Usage
+
+## Technologies Used
+
+## Ackowledgements
+
 
 <!-- Create 3 HTML pages: 1 home page, then two results pages, one for each site type -->
 <!-- Home Page needs:

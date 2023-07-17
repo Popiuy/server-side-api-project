@@ -59,7 +59,7 @@ searchField.submit(function(event){
     $('.pagination').attr('style','');
 })
 
-//listeners for pagination Forward uses same code as back, but increments the page counter instead
+//listeners for pagination: Forward uses same code as back, but increments the page counter instead
 //of reducing it.
 $('#back').on('click', function(){
     //stopping the back button from working when on page 1
@@ -117,7 +117,7 @@ timer = setInterval(function(){
 $('#cats-btn').on('click', function(){
     clearInterval(timer);
     store.set('newsTime', counter);
-    window.location = './pics-results.html';
+    window.location = './cats-results.html';
 })
 
 
