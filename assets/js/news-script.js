@@ -110,15 +110,17 @@ counter = store.get('newsTime')
 
 
 //setInterval runs on page load
-setInterval(function(){
+timer = setInterval(function(){
     timeDisplay.textContent = counter;
     counter ++;
-    store.set('newsTime', counter)
-    console.log(store.get('newsTime')) 
-
 }, 1000); 
 
+$('#cats-btn').on('click', function(){
+    clearInterval(timer);
+    store.set('newsTime', counter);
+    window.location = '/pic-results.html';
 
+})
 
 
 
