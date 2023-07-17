@@ -18,3 +18,9 @@
     background-color: aqua;
     height: 100%;
 }
+
+.newEntry{
+    box-shadow: 3px;
+    border-radius: 15px;
+    font-size: 30px;
+}
