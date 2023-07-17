@@ -75,5 +75,8 @@ function fetchData(searchInput) {
 //section for pagination
 
 // section for timers
+//on page load, update timer text from localStorage
+var timeDisplay = document.querySelector('#time-display');
+var counter = 0;
 
 // section handling page transition
