@@ -19,11 +19,11 @@
     <!--navbar for our buttons and timers-->
     <nav class="row" id="navBar">
       <div class="nav-wrapper col s12">
-        <button class="left col s3 nav-btn" id='catLink'>Cats</button>
-        <h5 class="left col s2">TIMER FOR CATS</h5>
+        <button class="left col s3 nav-btn" id="cats-btn">Cats</button>
+        <h5 class="left col s2">00:00:00</h5>
         <div class="brand-logo center"><i class="fa-solid fa-dumpster-fire fa-beat"></i></div>
-        <button class="btn right col s3 nav-btn disabled">News</button>
-        <h5 class='right col s2 right-align'>TIMER FOR NEWS</h5>
+        <button class="btn right col s3 nav-btn" id="news-btn">News</button>
+        <h5 class='right col s2 right-align' id="time-display">00:00:00</h5>
       </div>
       <!--search bar for the content and a submit button-->
       <nav id="searchBar" class="col s12"> 
@@ -67,6 +67,7 @@
 </div>
     <!-- Links to materialize and javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/2.0.1/store.legacy.min.js"></script>
     <script src="../js/news-script.js"></script>
 </body>
 

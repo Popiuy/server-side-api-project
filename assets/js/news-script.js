@@ -97,13 +97,30 @@ $('#forward').on('click', function(){
 // on page transition, timers are stored in localStorage
 
 //on page load, update timer text from localStorage
+var timeDisplay = document.querySelector('#time-display');
+var counter = 0;
+
+//updates counter on page load by looking into local storage
+
+
+
+
+//want this to happen first
+counter = store.get('newsTime')
+
 
 //setInterval runs on page load
-// every 1 sec:
-// increases timer by 1
-// updates text field on page
-// stores current time in localStorage
+setInterval(function(){
+    timeDisplay.textContent = counter;
+    counter ++;
+    store.set('newsTime', counter)
+    console.log(store.get('newsTime')) 
 
-//section for pagination
+}, 1000); 
 
-//section handling page transitions
+
+
+
+
+
+
