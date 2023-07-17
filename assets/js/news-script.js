@@ -34,7 +34,6 @@ var searchDisplay = function(searchInput){
     })
 
     .then(function(data){
-        console.log(data.response);
         //create new a item, make the content the abstract, and add an href
         createEntries(data);
     })
@@ -60,7 +59,8 @@ searchField.submit(function(event){
     $('.pagination').attr('style','');
 })
 
-//listener for pagination
+//listeners for pagination Forward uses same code as back, but increments the page counter instead
+//of reducing it.
 $('#back').on('click', function(){
     //stopping the back button from working when on page 1
     if (pageCounter === 0){
@@ -70,10 +70,15 @@ $('#back').on('click', function(){
     else if (pageCounter === 1){
         $('#back').addClass('disabled');
     }
+
     pageCounter--;
+    //reset search results
     resultsDisplay.html('');
     $('#search').val('');
+
+    //reloading search query with new page count
     searchDisplay(searchTerm);
+
     $('#pageCount').text('Page ' + (pageCounter + 1));
     //store search info in url
     window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
@@ -88,37 +93,32 @@ $('#forward').on('click', function(){
     console.log(searchTerm);
     $('#pageCount').text('Page ' + (pageCounter + 1));
     $('#back').removeClass('disabled');
-    //store search info in url
     window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
 })
 
-//section for timer - on page load, timer starts counting for the page you're on, timer for other page 
-// is displayed but not counting. Count up every second.
-// on page transition, timers are stored in localStorage
+//Timer Section
 
-//on page load, update timer text from localStorage
-var timeDisplay = document.querySelector('#time-display');
+var timeDisplay = document.querySelector('#newsTimer');
 var counter = 0;
 
-//updates counter on page load by looking into local storage
+//on page load, update timer text from localStorage
+counter = store.get('newsTime');
 
+// Update frozen timer from localStorage
+$('#catTimer').text(store.get('catTime'));
 
-
-
-//want this to happen first
-counter = store.get('newsTime')
-
-
-//setInterval runs on page load
-setInterval(function(){
+//Update news timer every second
+timer = setInterval(function(){
     timeDisplay.textContent = counter;
     counter ++;
-    store.set('newsTime', counter)
-    console.log(store.get('newsTime')) 
-
 }, 1000); 
 
-
+//Allows button to stop timer, store timer info for current page, and swap to cats page
+$('#cats-btn').on('click', function(){
+    clearInterval(timer);
+    store.set('newsTime', counter);
+    window.location = './pics-results.html';
+})
 
 
 
