@@ -96,18 +96,18 @@ $('#forward').on('click', function(){
     window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
 })
 
-//section for timer - on page load, timer starts counting for the page you're on, timer for other page 
-// is displayed but not counting. Count up every second.
-// on page transition, timers are stored in localStorage
+//Timer Section
 
-//on page load, update timer text from localStorage
-var timeDisplay = document.querySelector('#time-display');
+var timeDisplay = document.querySelector('#newsTimer');
 var counter = 0;
 
-//want this to happen first
-counter = store.get('newsTime')
+//on page load, update timer text from localStorage
+counter = store.get('newsTime');
 
-//setInterval runs on page load
+// Update frozen timer from localStorage
+$('#catTimer').text(store.get('catTime'));
+
+//Update news timer every second
 setInterval(function(){
     timeDisplay.textContent = counter;
     counter ++;
