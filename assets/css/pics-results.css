@@ -11,6 +11,7 @@
 #navBar {
     background-color: green;
 }
+
 /* removed shadow to seamlessly link two elements */
 #searchBar{
     box-shadow: none;
