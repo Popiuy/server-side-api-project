@@ -113,6 +113,7 @@ timer = setInterval(function(){
     counter ++;
 }, 1000); 
 
+//Allows button to stop timer, store timer info for current page, and swap to cats page
 $('#cats-btn').on('click', function(){
     clearInterval(timer);
     store.set('newsTime', counter);
