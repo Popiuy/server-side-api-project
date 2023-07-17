@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!--Import Google Icon Font-->
+    <!--Import Google Material Icons, Materialize, and Jquery-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   </head>
 
   <body>
@@ -20,11 +24,11 @@
             </div>
             <div 
                 class="col s7 push-s5"><span class="flow-text">Select for sad...</span>
-                <a class="waves-effect waves-light btn-large"><i class="material-icons left">mood_bad</i></a>
+                <button class="waves-effect waves-light btn-large" id="sad"><i class="material-icons left">mood_bad</i></button>
             </div>
             <div 
                 class="col s5 pull-s7"><span class="flow-text">Select for happy!</span>
-                <a class="waves-effect waves-light btn-large"><i class="material-icons left">mood</i></a>      
+                <button class="waves-effect waves-light btn-large"  id="happy"><i class="material-icons left">mood</i></button>      
             </div>
           </div>
     </div>
@@ -32,6 +36,8 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/2.0.1/store.legacy.min.js"></script>
+    <script src="./assets/js/home.js"></script>
   </body>
 </html>
       
