@@ -5,6 +5,8 @@ var input = document.querySelector("#input");
 var form = document.querySelector("#form");
 var resultsDisplay = document.querySelector("#resultsDisplay");
 var pictureUrl = "";
+var searchField = $('#searchInputField');
+var pageCounter = 0;
 
 function pullPicture(url) {
   fetch(url)
@@ -25,13 +27,10 @@ function printPicture(url) {
 }
 
 function renderCatData(data) {
-  console.log(data);
   var catList = data.data;
   for (var i = 0; i < catList.length; i++) {
     var currentCatData = catList[i];
     var catDataEl = document.createElement("div");
-    catDataEl.textContent = currentCatData.api_link;
-    resultsDisplay.append(catDataEl);
   }
 }
 
@@ -52,14 +51,11 @@ fetch(picsUrl)
   });
 
 // event listener to check what the user is interested in
-form.addEventListener("submit", function (event) {
+$('#form').submit(function(event) {
   event.preventDefault();
-  var searchInput = input.value.trim();
-  if (searchInput !== "") {
-    fetchData(searchInput);
-  } else {
-    alert("Please enter types of cats you'd like to see");
-  }
+  var searchTerm = $('#input').val();
+  $('#input').val('');
+  fetchData(searchTerm);
 });
 
 // function to handle the information we returned and append api_link to the page
