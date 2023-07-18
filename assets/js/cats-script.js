@@ -75,13 +75,15 @@ function fetchData(searchInput) {
 }
 //Timer Section
 
-var timeDisplay = document.querySelector('#catsTimer');
+var timeDisplay = document.querySelector('#catTimer');
 var counter = 0;
 //on page load, update timer text from localStorage
-counter = store.get('catTimer');
+
+
+counter = store.get('catTime');
 
 // Update frozen timer from localStorage
-$('#catTimer').text(store.get('catsTime'));
+$('#newsTimer').text(store.get('newsTime'));
 
 //Update news timer every second
 var timer = setInterval(function() {
@@ -92,7 +94,7 @@ var timer = setInterval(function() {
 //Allows button to stop timer, store timer info for current page, and swap to news page
 $('#news-btn').on('click', function() {
   clearInterval(timer);
-  store.set('catsTime', counter);
+  store.set('catTime', counter);
   window.location = './news-results.html';
 });
 
