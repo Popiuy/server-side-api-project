@@ -11,7 +11,8 @@
 			  src="https://code.jquery.com/jquery-3.7.0.js"
 			  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
 			  crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/pics-results.css">
+ feature/cats
+    <link rel="stylesheet" href="../css/cats-results.css">
     <title>View Cats</title>
 </head>
 
@@ -20,11 +21,10 @@
     <nav class="row" id="navBar">
       <div class="nav-wrapper col s12">
         <button class="left col s3 nav-btn btn disabled" id="cats-btn">Cats</button>
-        <h5 class="left col s2">TIMER FOR CATS</h5>
+        <h5 class="left col s2" id="catTimer">00:00:00</h5>
         <div class="brand-logo center"><i class="fa-solid fa-cat fa-spin"></i></div>
         <button class="right col s3 nav-btn" id="news-btn">News</button>
-        <h5 class='right col s2 right-align'>TIMER FOR NEWS</h5>
-        
+        <h5 class='right col s2 right-align' id="newsTimer">00:00:00</h5>
       </div>
       <!--search bar for the content and a submit button-->
       <nav id="searchBar" class="col s12"> 
