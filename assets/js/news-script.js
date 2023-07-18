@@ -107,11 +107,31 @@ counter = store.get('newsTime');
 // Update frozen timer from localStorage
 $('#catTimer').text(store.get('catTime'));
 
+
+// formatting our timer in a more user friendly way
+var toHHMMSS = function (sec_num) {
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+
+    // adding a leading 0 digit infront the single 0 digits
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+}
+
+
+
+
 //Update news timer every second
 timer = setInterval(function(){
-    timeDisplay.textContent = counter;
+    timeDisplay.textContent = toHHMMSS(counter);
     counter ++;
 }, 1000); 
+
+
 
 //Allows button to stop timer, store timer info for current page, and swap to cats page
 $('#cats-btn').on('click', function(){
