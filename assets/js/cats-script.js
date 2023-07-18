@@ -92,7 +92,7 @@ var counter = 0;
 counter = store.get('catTime');
 
 // Update frozen timer from localStorage
-$('#newsTimer').text(store.get('newsTime'));
+$('#catTimer').text(store.get('catTime'));
 
 //Update news timer every second
 var timer = setInterval(function() {
