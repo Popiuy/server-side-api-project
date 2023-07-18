@@ -1,12 +1,13 @@
-// section for api management
+// JavaScript section for api management
 var picsUrl = 'https://api.artic.edu/api/v1/artworks/search?q=cats&query[term][is_public_domain]=true';
-
-var input = document.querySelector("#input");
-var form = document.querySelector("#form");
+var input = document.querySelector("#search");
+var form = document.querySelector("#searchInputField");
 var resultsDisplay = document.querySelector("#resultsDisplay");
+var searchTerm = "cats"; // Initialize with default search term "cats"
 var pictureUrl = "";
 var searchField = $('#searchInputField');
 var pageCounter = 0;
+var pageURL = window.location.href;
 
 function pullPicture(url) {
   fetch(url)
@@ -73,28 +74,71 @@ function fetchData(searchInput) {
     });
 }
 
-//TODO: Pagination
-
+$('#forward').on('click', function(){
+  pageCounter++;
+  resultsDisplay.html('');
+  $('#search').val('');
+  searchDisplay(searchTerm);
+  console.log(searchTerm);
+  $('#pageCount').text('Page ' + (pageCounter + 1));
+  $('#back').removeClass('disabled');
+  window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
+})
 //Timer Section
 
-var timeDisplay = document.querySelector('#catTimer');
+var timeDisplay = document.querySelector('#catsTimer');
 var counter = 0;
-
 //on page load, update timer text from localStorage
-counter = store.get('catTime');
+counter = store.get('catsTime');
 
 // Update frozen timer from localStorage
-$('#newsTimer').text(store.get('newsTime'));
+$('#catTimer').text(store.get('catsTime'));
 
 //Update news timer every second
-timer = setInterval(function(){
-    timeDisplay.textContent = counter;
-    counter ++;
-}, 1000); 
+var timer = setInterval(function() {
+  timeDisplay.textContent = counter;
+  counter++;
+}, 1000);
 
-//Allows button to stop timer, store timer info for current page, and swap to cats page
-$('#news-btn').on('click', function(){
-    clearInterval(timer);
-    store.set('catTime', counter);
-    window.location = './cats-results.html';
-})
+//Allows button to stop timer, store timer info for current page, and swap to news page
+$('#news-btn').on('click', function() {
+  clearInterval(timer);
+  store.set('catsTime', counter);
+  window.location = './news-results.html';
+});
+
+//listeners for pagination Forward uses same code as back, but increments the page counter instead
+//of reducing it.
+$('#back').on('click', function() {
+  //stopping the back button from working when on page 1
+  if (pageCounter === 0) {
+    return;
+  }
+  //making the back button visibly unusable when on page 1
+  else if (pageCounter === 1) {
+    $('#back').addClass('disabled');
+  }
+
+  pageCounter--;
+  //reset search results
+  resultsDisplay.innerHTML = '';
+  $('#search').val('');
+
+  //reloading search query with new page count
+  fetchData(searchTerm);
+
+  $('#pageCount').text('Page ' + (pageCounter + 1));
+  //store search info in url
+  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+});
+
+$('#forward').on('click', function() {
+  pageCounter++;
+  resultsDisplay.innerHTML = '';
+  $('#search').val('');
+  fetchData(searchTerm);
+  console.log(searchTerm);
+  $('#pageCount').text('Page ' + (pageCounter + 1));
+  $('#back').removeClass('disabled');
+  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+});
