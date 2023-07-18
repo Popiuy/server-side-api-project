@@ -1,5 +1,3 @@
-
-//section for api management 
 var resultsDisplay = $('#resultsDisplay');
 var cardTemplate = $('#entryCard');
 var searchField = $('#searchInputField');

@@ -14,13 +14,15 @@ diagnose, treat, or cure any disease. Talk to your doctor.
 
 ## Usage
 
-Visit URL and choose your path. You can switch paths any time with the buttons at the
-top of the screen. <br>
+Visit https://popiuy.github.io/server-side-api-project/ and choose your path. 
+You can switch paths any time with the buttons at the top of the screen. <br>
 
 The webpage will track the amount of time you spend on news versus cats. After a while, 
 take note of how you feel compared to the proportions of time you've spent on each page. <br>
 
-(In browser stat tracking will come in a future version)
+![Gif Showing Website Functionality](./IiB.gif)
+
+(In-browser stat tracking will come in a future version)
 
 ## Technologies Used
 - HTML
@@ -33,6 +35,8 @@ take note of how you feel compared to the proportions of time you've spent on ea
 ## Ackowledgements
 - News API provided by The New York Times - https://developer.nytimes.com
 - Picture API provided by The Art Institute of Chicago - http://api.artic.edu/docs/
+- Materialize Icons via https://fonts.google.com/icons/
+- Additional icons via https://fontawesome.com/
 
 <!-- Create 3 HTML pages: 1 home page, then two results pages, one for each site type -->
 <!-- Home Page needs:

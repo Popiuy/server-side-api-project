@@ -6,7 +6,7 @@ var resultsDisplay = document.querySelector("#resultsDisplay");
 var searchTerm = "cats"; // Initialize with default search term "cats"
 var pictureUrl = "";
 var searchField = $('#searchInputField');
-var pageCounter = 0;
+var pageCounter = 1;
 var pageURL = window.location.href;
 
 function pullPicture(url) {
@@ -42,7 +42,6 @@ fetch(picsUrl)
   })
   .then(function (picInfo) {
     console.log(picInfo);
-    renderCatData(picInfo);
     for (var i = 0; i < picInfo.data.length; i++) {
       pullPicture(picInfo.data[i].api_link);
     }
@@ -61,24 +60,52 @@ $('#form').submit(function(event) {
 
 // function to handle the information we returned and append api_link to the page
 function fetchData(searchInput) {
-  var searchUrl = 'https://api.artic.edu/api/v1/artworks/search?q=' + searchInput + '&query[term][is_public_domain]=true';
+  var searchUrl = 'https://api.artic.edu/api/v1/artworks/search?q=' + searchInput + '&query[term][is_public_domain]=true&limit=10&page=' + pageCounter;
   fetch(searchUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      renderCatData(data);
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (picInfo) {
+    console.log(picInfo);
+    for (var i = 0; i < picInfo.data.length; i++) {
+      pullPicture(picInfo.data[i].api_link);
+    }
+  })
+  .catch(function (error) {
+    console.log("Error:", error);
+  });
 }
+
+//listeners for pagination Forward uses same code as back, but increments the page counter instead
+//of reducing it.
+$('#back').on('click', function() {
+  //stopping the back button from working when on page 1
+  if (pageCounter === 0) {
+    return;
+  }
+  //making the back button visibly unusable when on page 1
+  else if (pageCounter === 1) {
+    $('#back').addClass('disabled');
+  }
+
+  pageCounter--;
+  //reset search results
+  $('#resultsDisplay').html('');
+  $('#search').val('');
+
+  //reloading search query with new page count
+  fetchData(searchTerm);
+
+  $('#pageCount').text('Page ' + (pageCounter + 1));
+  //store search info in url
+  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+});
 
 $('#forward').on('click', function(){
   pageCounter++;
-  resultsDisplay.html('');
+  $('#resultsDisplay').html('');
   $('#search').val('');
-  searchDisplay(searchTerm);
+  fetchData(searchTerm);
   console.log(searchTerm);
   $('#pageCount').text('Page ' + (pageCounter + 1));
   $('#back').removeClass('disabled');
@@ -126,38 +153,3 @@ $('#news-btn').on('click', function() {
   window.location = './news-results.html';
 });
 
-//listeners for pagination Forward uses same code as back, but increments the page counter instead
-//of reducing it.
-$('#back').on('click', function() {
-  //stopping the back button from working when on page 1
-  if (pageCounter === 0) {
-    return;
-  }
-  //making the back button visibly unusable when on page 1
-  else if (pageCounter === 1) {
-    $('#back').addClass('disabled');
-  }
-
-  pageCounter--;
-  //reset search results
-  resultsDisplay.innerHTML = '';
-  $('#search').val('');
-
-  //reloading search query with new page count
-  fetchData(searchTerm);
-
-  $('#pageCount').text('Page ' + (pageCounter + 1));
-  //store search info in url
-  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
-});
-
-$('#forward').on('click', function() {
-  pageCounter++;
-  resultsDisplay.innerHTML = '';
-  $('#search').val('');
-  fetchData(searchTerm);
-  console.log(searchTerm);
-  $('#pageCount').text('Page ' + (pageCounter + 1));
-  $('#back').removeClass('disabled');
-  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
-});
