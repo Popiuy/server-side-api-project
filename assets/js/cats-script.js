@@ -73,23 +73,12 @@ function fetchData(searchInput) {
       console.log("Error:", error);
     });
 }
-
-$('#forward').on('click', function(){
-  pageCounter++;
-  resultsDisplay.html('');
-  $('#search').val('');
-  searchDisplay(searchTerm);
-  console.log(searchTerm);
-  $('#pageCount').text('Page ' + (pageCounter + 1));
-  $('#back').removeClass('disabled');
-  window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
-})
 //Timer Section
 
 var timeDisplay = document.querySelector('#catsTimer');
 var counter = 0;
 //on page load, update timer text from localStorage
-counter = store.get('catsTime');
+counter = store.get('catTimer');
 
 // Update frozen timer from localStorage
 $('#catTimer').text(store.get('catsTime'));
@@ -129,7 +118,7 @@ $('#back').on('click', function() {
 
   $('#pageCount').text('Page ' + (pageCounter + 1));
   //store search info in url
-  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+  window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page='       + pageCounter);
 });
 
 $('#forward').on('click', function() {
@@ -140,5 +129,5 @@ $('#forward').on('click', function() {
   console.log(searchTerm);
   $('#pageCount').text('Page ' + (pageCounter + 1));
   $('#back').removeClass('disabled');
-  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+  window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page=' + pageCounter);
 });
