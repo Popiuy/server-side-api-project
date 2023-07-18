@@ -84,6 +84,7 @@ $('#forward').on('click', function(){
   $('#back').removeClass('disabled');
   window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
 })
+
 //Timer Section
 
 var timeDisplay = document.querySelector('#catTimer');
@@ -91,12 +92,30 @@ var counter = 0;
 //on page load, update timer text from localStorage
 counter = store.get('catTime');
 
+
+// formatting our timer in a more user friendly way
+var toHHMMSS = function (sec_num) {
+  var hours   = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  var seconds = sec_num - (hours * 3600) - (minutes * 60);
+  
+  
+  // adding a leading 0 digit infront the single 0 digits
+  if (hours   < 10) {hours   = "0"+hours;}
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  return hours+':'+minutes+':'+seconds;
+}
+
+
 // Update frozen timer from localStorage
-$('#newsTimer').text(store.get('newsTime'));
+//Need to get the saved time from the local storage along with it being formatted
+$('#newsTimer').text(toHHMMSS(store.get('newsTime')));
+
 
 //Update news timer every second
 var timer = setInterval(function() {
-  timeDisplay.textContent = counter;
+  timeDisplay.textContent = toHHMMSS(counter);
   counter++;
 }, 1000);
 
