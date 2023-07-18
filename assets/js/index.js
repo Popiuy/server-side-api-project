@@ -4,7 +4,7 @@ store.set('catTime', 0);
 
 //redirect links on buttons
 $('#cats').on('click', function(event){
-    window.location = './assets/html/pics-results.html';
+    window.location = './assets/html/cats-results.html';
 })
 
 $('#news').on('click', function(event){
