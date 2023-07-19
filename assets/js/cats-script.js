@@ -6,7 +6,7 @@ var resultsDisplay = document.querySelector("#resultsDisplay");
 var searchTerm = "cats"; // Initialize with default search term "cats"
 var pictureUrl = "";
 var searchField = $('#searchInputField');
-var pageCounter = 0;
+var pageCounter = 1;
 var pageURL = window.location.href;
 
 function pullPicture(url) {
@@ -42,7 +42,6 @@ fetch(picsUrl)
   })
   .then(function (picInfo) {
     console.log(picInfo);
-    renderCatData(picInfo);
     for (var i = 0; i < picInfo.data.length; i++) {
       pullPicture(picInfo.data[i].api_link);
     }
@@ -61,18 +60,22 @@ $('#form').submit(function(event) {
 
 // function to handle the information we returned and append api_link to the page
 function fetchData(searchInput) {
-  var searchUrl = 'https://api.artic.edu/api/v1/artworks/search?q=' + searchInput + '&query[term][is_public_domain]=true';
+  var searchUrl = 'https://api.artic.edu/api/v1/artworks/search?q=' + searchInput + '&query[term][is_public_domain]=true&limit=10&page=' + pageCounter;
   fetch(searchUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      renderCatData(data);
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (picInfo) {
+    console.log(picInfo);
+    for (var i = 0; i < picInfo.data.length; i++) {
+      pullPicture(picInfo.data[i].api_link);
+    }
+  })
+  .catch(function (error) {
+    console.log("Error:", error);
+  });
 }
+<<<<<<< HEAD
 //Timer Section
 
 var timeDisplay = document.querySelector('#catTimer');
@@ -97,6 +100,8 @@ $('#news-btn').on('click', function() {
   store.set('catTime', counter);
   window.location = './news-results.html';
 });
+=======
+>>>>>>> a6f00be08db61ae2e6efe71064970c2f0892b048
 
 //listeners for pagination Forward uses same code as back, but increments the page counter instead
 //of reducing it.
@@ -112,7 +117,7 @@ $('#back').on('click', function() {
 
   pageCounter--;
   //reset search results
-  resultsDisplay.innerHTML = '';
+  $('#resultsDisplay').html('');
   $('#search').val('');
 
   //reloading search query with new page count
@@ -123,13 +128,60 @@ $('#back').on('click', function() {
   window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page='       + pageCounter);
 });
 
-$('#forward').on('click', function() {
+$('#forward').on('click', function(){
   pageCounter++;
-  resultsDisplay.innerHTML = '';
+  $('#resultsDisplay').html('');
   $('#search').val('');
   fetchData(searchTerm);
   console.log(searchTerm);
   $('#pageCount').text('Page ' + (pageCounter + 1));
   $('#back').removeClass('disabled');
+<<<<<<< HEAD
   window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page=' + pageCounter);
 });
+=======
+  window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
+})
+
+//Timer Section
+
+var timeDisplay = document.querySelector('#catTimer');
+var counter = 0;
+//on page load, update timer text from localStorage
+counter = store.get('catTime');
+
+
+// formatting our timer in a more user friendly way
+var toHHMMSS = function (sec_num) {
+  var hours   = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  var seconds = sec_num - (hours * 3600) - (minutes * 60);
+  
+  
+  // adding a leading 0 digit infront the single 0 digits
+  if (hours   < 10) {hours   = "0"+hours;}
+  if (minutes < 10) {minutes = "0"+minutes;}
+  if (seconds < 10) {seconds = "0"+seconds;}
+  return hours+':'+minutes+':'+seconds;
+}
+
+
+// Update frozen timer from localStorage
+//Need to get the saved time from the local storage along with it being formatted
+$('#newsTimer').text(toHHMMSS(store.get('newsTime')));
+
+
+//Update news timer every second
+var timer = setInterval(function() {
+  timeDisplay.textContent = toHHMMSS(counter);
+  counter++;
+}, 1000);
+
+//Allows button to stop timer, store timer info for current page, and swap to news page
+$('#news-btn').on('click', function() {
+  clearInterval(timer);
+  store.set('catTime', counter);
+  window.location = './news-results.html';
+});
+
+>>>>>>> a6f00be08db61ae2e6efe71064970c2f0892b048
