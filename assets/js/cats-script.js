@@ -76,6 +76,31 @@ function fetchData(searchInput) {
   });
 }
 
+//Timer Section
+
+var timeDisplay = document.querySelector('#catTimer');
+var counter = 0;
+//on page load, update timer text from localStorage
+
+
+counter = store.get('catTime');
+
+// Update frozen timer from localStorage
+$('#newsTimer').text(store.get('newsTime'));
+
+//Update news timer every second
+var timer = setInterval(function() {
+  timeDisplay.textContent = counter;
+  counter++;
+}, 1000);
+
+//Allows button to stop timer, store timer info for current page, and swap to news page
+$('#news-btn').on('click', function() {
+  clearInterval(timer);
+  store.set('catTime', counter);
+  window.location = './news-results.html';
+});
+
 //listeners for pagination Forward uses same code as back, but increments the page counter instead
 //of reducing it.
 $('#back').on('click', function() {
@@ -98,7 +123,7 @@ $('#back').on('click', function() {
 
   $('#pageCount').text('Page ' + (pageCounter + 1));
   //store search info in url
-  window.history.pushState({}, '', '?q=' + searchTerm + '&page=' + pageCounter);
+  window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page='       + pageCounter);
 });
 
 $('#forward').on('click', function(){
@@ -109,8 +134,8 @@ $('#forward').on('click', function(){
   console.log(searchTerm);
   $('#pageCount').text('Page ' + (pageCounter + 1));
   $('#back').removeClass('disabled');
-  window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
-})
+  window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page=' + pageCounter);
+});
 
 //Timer Section
 
@@ -152,4 +177,3 @@ $('#news-btn').on('click', function() {
   store.set('catTime', counter);
   window.location = './news-results.html';
 });
-
