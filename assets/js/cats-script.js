@@ -75,7 +75,7 @@ function fetchData(searchInput) {
     console.log("Error:", error);
   });
 }
-<<<<<<< HEAD
+
 //Timer Section
 
 var timeDisplay = document.querySelector('#catTimer');
@@ -100,8 +100,6 @@ $('#news-btn').on('click', function() {
   store.set('catTime', counter);
   window.location = './news-results.html';
 });
-=======
->>>>>>> a6f00be08db61ae2e6efe71064970c2f0892b048
 
 //listeners for pagination Forward uses same code as back, but increments the page counter instead
 //of reducing it.
@@ -136,12 +134,8 @@ $('#forward').on('click', function(){
   console.log(searchTerm);
   $('#pageCount').text('Page ' + (pageCounter + 1));
   $('#back').removeClass('disabled');
-<<<<<<< HEAD
   window.history.pushState({}, '', '?q=' + searchTerm + "&limit=100" ,'&page=' + pageCounter);
 });
-=======
-  window.history.pushState( {} , '', '?q=' + searchTerm + '&page=' + pageCounter);
-})
 
 //Timer Section
 
@@ -183,5 +177,3 @@ $('#news-btn').on('click', function() {
   store.set('catTime', counter);
   window.location = './news-results.html';
 });
-
->>>>>>> a6f00be08db61ae2e6efe71064970c2f0892b048
