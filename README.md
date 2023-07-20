@@ -20,7 +20,7 @@ You can switch paths any time with the buttons at the top of the screen. <br>
 The webpage will track the amount of time you spend on news versus cats. After a while, 
 take note of how you feel compared to the proportions of time you've spent on each page. <br>
 
-![Gif Showing Website Functionality](./IiB.gif)
+![Gif Showing Website Functionality](./gifs/picture-API-proof.gif)
 
 (In-browser stat tracking will come in a future version)
 
@@ -32,40 +32,61 @@ take note of how you feel compared to the proportions of time you've spent on ea
 - Materialize CSS - https://materializecss.com/
 - Store.js  - https://github.com/marcuswestin/store.js/
 
+## User Stories
+    AS A User
+    I WANT to be presented with a choice of two options 
+    SO THAT I can make an intentional decision about what kind of content I want to consume. 
+
+![Gif of Home Page Functionality](./gifs/two-options.gif)
+
+    AS A User
+    I WANT to be able to see current news articles 
+    SO THAT I may be more informed
+    
+![Gif of News Page Functionality](./gifs/UserStoryNews.gif)
+
+    AS A User
+    I WANT to be able to click through to see the full article
+    SO THAT I can dig deeper into interesting topics
+
+![Gif of News Hyperlink Functionality](./gifs/UserStoryLink.gif)
+
+    AS A User
+    I WANT to be able to see cat pictures
+    SO THAT I can destress a bit
+
+![Gif of Cat Page Functionality](./gifs/UserStoryCats.gif)
+
+    AS A User
+    I WANT to be able to change between each type of content with a single button press
+    SO THAT I can adjust the content based on my current desire.
+
+![Gif of Page Change Functionality](./gifs/switch-between.gif)
+
+ 
+
+## CSS Framework
+For this site, we used [Materialize](https://materializecss.com/grid.html). 
+Made by Google, Materialize is similar to Bootstrap. It can be imported via CDN,
+and then used by assigning predetermined classes to HTML tags.
+It operates with a similar 12-columngrid system, and is 
+inherently responsive to varying screen sizes:
+
+![Gif of Mobile Responsiveness](./gifs/Mobile-Responsiveness.gif)
+
+## Learning Objectives
+- Integrating third party APIs
+- Creating responsive websites with CSS Frameworks (that aren't Bootstrap)
+- Using client side storage to save site data
+- Researching and integrating third party Javascript libraries
+
 ## Ackowledgements
 - News API provided by The New York Times - https://developer.nytimes.com
 - Picture API provided by The Art Institute of Chicago - http://api.artic.edu/docs/
 - Materialize Icons via https://fonts.google.com/icons/
 - Additional icons via https://fontawesome.com/
 
-<!-- Create 3 HTML pages: 1 home page, then two results pages, one for each site type -->
-<!-- Home Page needs:
-    Header with a welcome banner that explains how the site works
-    Two buttons, one for each results page -->
-<!-- Each results page needs
-    Header with the two options
-    Input field and submit button - with an autofilled option
-    Div for appending our api results
-    Nav bar at the bottom to move through multiple pages of content
-    Its own formatting w/ background colors, header colors, font families?
-    Div with timer?
-    -->
-
-<!-- Create JS pages for each results page -->
-<!-- Each results page needs
-    initialization:
-        (re)start timer, check local storage for existing time
-        Load CSS
-    Function for parsing the search input
-    Function for dynamically creating html elements and then fill them with the response info, then append to page
-    Function for tracking time spent on page
-    Function for transitioning between pages
-        stops timer, stores locally
-    Function for pagination-->
-
-<!-- Create CSS pages for each page? (Tailwind) -->
-
-<!-- Reach for the moon -->
-<!-- Additional HTML page for results -->
-<!-- Asks user to rate their mood, displays time spent on each site -->
-<!-- stores results, displays existing results later -->
+## Contact Us
+- Derek Stanley-Howarth: [Github](https://github.com/DSHowarth)
+- Theodore Okeke: [Github](https://github.com/TheoUO)
+- Ryan Payne: [Github](https://github.com/Popiuy)
